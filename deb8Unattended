@@ -385,7 +385,7 @@ unset ipaddr
 unset mask
 unset gateway
 unset dns
-unset pwhash
+unset upwhash
 unset rpwhash
 unset download_file
 unset download_location
