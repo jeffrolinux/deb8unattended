@@ -331,6 +331,8 @@ sed -ie "s/pusername/$username/g" $tmp/iso_new/$seed_file
 sed -ie "s/phostname/$hostname/g" $tmp/iso_new/$seed_file
 #sed -ie "s@upwhash@$upwhash@g" $tmp/iso_new/$seed_file
 #sed -ie "s@rpwhash@$rpwhash@g" $tmp/iso_new/$seed_file
+sed -ie "s@upassword@$upassword@g" $tmp/iso_new/$seed_file
+sed -ie "s@rpassword@$rpassword@g" $tmp/iso_new/$seed_file
 sed -ie "s@secondupass@$secondupass@g" $tmp/iso_new/$seed_file
 sed -ie "s@secondrpass@$secondrpass@g" $tmp/iso_new/$seed_file
 sed -ie "s/pdomain/$domain/g" $tmp/iso_new/$seed_file 
