@@ -103,20 +103,20 @@ read -ep " please enter your preferred hostname: " -i "deb8" hostname
 read -ep " please enter your preferred domain-name: " -i "debianeight.com" domain
 read -sp " please enter your preferred password: " upassword
 printf "\n"
-read -sp " confirm your preferred password: " upassword2
+read -sp " confirm your preferred password: " secondupass
 printf "\n"
 # check if the passwords match to prevent headaches
-if [[ "$upassword" != "$upassword2" ]]; then
+if [[ "$upassword" != "$secondupass" ]]; then
     echo " your passwords do not match; please restart the script and try again"
     echo
     exit
 fi
 read -sp " please enter your preferred root password: " rpassword
 printf "\n"
-read -sp " confirm your root password: " rpassword2
+read -sp " confirm your root password: " secondrpass
 printf "\n"
 # check if the passwords match to prevent headaches
-if [[ "$rpassword" != "$rpassword2" ]]; then
+if [[ "$rpassword" != "$secondrpass" ]]; then
     echo " your passwords do not match; please restart the script and try again"
     echo
     exit
@@ -314,8 +314,8 @@ fi
 # include firstrun script # I personally chose not to use this I will run the commands I choose
 #echo "
 
-upwhash=$(echo $upassword | mkpasswd -s -m sha-512)
-rpwhash=$(echo $rpassword | mkpasswd -s -m sha-512)
+#upwhash=$(echo $upassword | mkpasswd -s -m sha-512)
+#rpwhash=$(echo $rpassword | mkpasswd -s -m sha-512)
 
 
 # update the seed file to reflect the users' choices
@@ -329,8 +329,10 @@ rpwhash=$(echo $rpassword | mkpasswd -s -m sha-512)
 #my own sed begins example to follow sed -ie 's/few/asd/g' hello.txt
 sed -ie "s/pusername/$username/g" $tmp/iso_new/$seed_file
 sed -ie "s/phostname/$hostname/g" $tmp/iso_new/$seed_file
-sed -ie "s@upwhash@$upwhash@g" $tmp/iso_new/$seed_file
-sed -ie "s@rpwhash@$rpwhash@g" $tmp/iso_new/$seed_file
+#sed -ie "s@upwhash@$upwhash@g" $tmp/iso_new/$seed_file
+#sed -ie "s@rpwhash@$rpwhash@g" $tmp/iso_new/$seed_file
+sed -ie "s@secondupass@$secondupass@g" $tmp/iso_new/$seed_file
+sed -ie "s@secondrpass@$secondrpass@g" $tmp/iso_new/$seed_file
 sed -ie "s/pdomain/$domain/g" $tmp/iso_new/$seed_file 
 
 
@@ -371,9 +373,9 @@ echo
 unset username
 unset domain
 unset upassword
-unset upassword2
+unset secondupass
 unset rpassword
-unset rpassword2
+unset secondrpass
 unset hostname
 unset timezone
 unset bootable
